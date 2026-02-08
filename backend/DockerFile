@@ -1,0 +1,7 @@
+FROM openjdk:8
+
+LABEL maintainer="AJAY"
+
+ADD target/customerdetails.jar  customerdetails.jar
+
+ENTRYPOINT ["java","-jar","customerdetails.jar"]

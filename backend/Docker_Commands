@@ -1,0 +1,10 @@
+
+docker network create springboot-mysql-network
+
+docker run --name CustomerService --network springboot-mysql-network -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=customer_db -d mysql:latest
+
+docker build -t customerapiimage . -f DockerFile
+
+docker run --network springboot-mysql-network --name CustomerContainer -p 8095:8085 -d customerapiimage
+
+docker exec -it CustomerService mysql -u root -p
